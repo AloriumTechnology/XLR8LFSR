@@ -1,0 +1,51 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/crakerbr/Arduino/libraries/XLR8Build/extras/rtl
+valorium_lfsr
+Z1 !s110 1480455626
+!i10b 1
+!s100 k<cYgIRd]l8RO3<m:Z05[2
+Io]I_6CWcf?>]1^]CRVF6?2
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+Z3 w1480455606
+Falorium_lfsr.v
+Z4 8/home/crakerbr/Arduino/libraries/XLR8Build/extras/rtl/alorium_lfsr_tb.v
+Z5 F/home/crakerbr/Arduino/libraries/XLR8Build/extras/rtl/alorium_lfsr_tb.v
+L0 14
+Z6 OV;L;10.3c;59
+r1
+!s85 0
+31
+Z7 !s108 1480455626.566470
+Z8 !s107 alorium_lfsr.v|/home/crakerbr/Arduino/libraries/XLR8Build/extras/rtl/alorium_lfsr_tb.v|
+Z9 !s90 -reportprogress|300|-work|work|/home/crakerbr/Arduino/libraries/XLR8Build/extras/rtl/alorium_lfsr_tb.v|
+!i113 1
+Z10 o-work work
+valorium_lfsr_tb
+R1
+!i10b 1
+!s100 3ch@Xcom:MOi:a]ZZWOI@0
+I@haETeJ1AL03SF[D3^[8H0
+R2
+R0
+R3
+R4
+R5
+L0 3
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10

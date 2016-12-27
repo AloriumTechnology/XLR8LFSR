@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Wed Nov 30 11:19:13 2016
+Quartus Prime Version : 15.1.0 Build 185 10/21/2015 SJ Lite Edition
+Revision Name : xlr8_top
+Top-level Entity Name : xlr8_top
+Family : MAX 10
+Total logic elements : 6,374
+    Total combinational functions : 5,753
+    Dedicated logic registers : 2,319
+Total registers : 2319
+Total pins : 45
+Total virtual pins : 0
+Total memory bits : 280,576
+Embedded Multiplier 9-bit elements : 4
+Total PLLs : 1
+UFM blocks : 1
+ADC blocks : 1
