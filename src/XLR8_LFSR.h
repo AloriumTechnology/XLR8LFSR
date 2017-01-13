@@ -1,5 +1,7 @@
 /*
- * Copyright (c) 2016 Alorium Technology, Bryan Craker <bryan.craker@superiontech.com>
+ * Copyright (c) 2016 Alorium Technology
+ * Bryan Craker, info@aloriumtech.com
+ *
  * LFSR Library for XLR8.
  *
  * This file is free software; you can redistribute it and/or modify
