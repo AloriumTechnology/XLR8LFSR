@@ -1,5 +1,0 @@
-PLL_Name	xlr8_clocks:clocks_inst|pll16:pll_inst|altpll:altpll_component|pll16_altpll:auto_generated|pll1
-PLLJITTER	101
-PLLSPEmax	84
-PLLSPEmin	-53
-

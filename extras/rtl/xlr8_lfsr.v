@@ -13,9 +13,9 @@
 
 module xlr8_lfsr (
    // Outputs
-   dbus_out, io_out_en,
+   dbus_out, io_out_en, heartbeat,
    // Inputs
-   rstn, clk, clken, dbus_in, ramadr, ramre, ramwe, dm_sel,
+   rstn, clk, clken, dbus_in, ramadr, ramre, ramwe, dm_sel, long_hb,
    );
 
    parameter LFSR_CTRL_ADDR = 0;
@@ -31,11 +31,15 @@ module xlr8_lfsr (
    input [7:0]               dbus_in;
    output [7:0]              dbus_out;
    output                    io_out_en;
+   input                     long_hb;
+   output                    heartbeat;
    // DM
    input [7:0]               ramadr;
    input                     ramre;
    input                     ramwe;
    input                     dm_sel;
+
+   logic new_seed;
 
    logic ctrl_sel;
    logic ctrl_we;
@@ -79,18 +83,25 @@ module xlr8_lfsr (
          lfsr_seed <= {WIDTH{1'b0}};
       end else if (clken && seed_we) begin
          lfsr_seed <= dbus_in[WIDTH-1:0];
+         new_seed <= seed_we;
+      end else begin
+         new_seed <= seed_we;
       end
    end // always @ (posedge clk or negedge rstn)
+   // note: new_seed needs to be offset one clock from seed_we to line 
+   // seed data up correctly
 
    alorium_lfsr lfsr_inst (
                         // Clock and Reset
                         .clk       (clk),
                         .reset_n   (rstn),
                         // Inputs
-                        .new_seed  (seed_we),
+                        .new_seed  (new_seed),
                         .enable    (lfsr_ctrl[0] | data_re),
                         .seed      (lfsr_seed),
+                        .long_hb   (long_hb),
                         // Output
+                        .heartbeat (heartbeat),
                         .lfsr_data (lfsr_data));
 
 endmodule // xlr8_lfsr
