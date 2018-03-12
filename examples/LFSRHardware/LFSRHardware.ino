@@ -7,7 +7,7 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(bin2string(XLR8_LFSR.get_lfsr(), BIN));
+  Serial.println(bin2string(XLR8_LFSR.get_lfsr()));
   delay(1000);
 }
 
