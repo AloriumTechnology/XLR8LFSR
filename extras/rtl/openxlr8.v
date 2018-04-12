@@ -207,7 +207,6 @@ module openxlr8
       .dbus_out    (lfsr_dbusout),
       .io_out_en   (lfsr_out_en),
       .heartbeat   (lfsr_heartbeat),
-      .long_hb     (lfsr_long_hb),
       // DM
       .ramadr      (ramadr[7:0]),
       .ramre       (ramre),
@@ -215,8 +214,6 @@ module openxlr8
       .dm_sel      (dm_sel)
       );
 
-   assign lfsr_long_hb = xb_pinx[2]; // pin 2 is an input that controls the "long heartbeat" on the LFSR
-   
    // Set pin control bits for the above XB. If no XBs are being
    // instantiated then leave these lines uncommented so values will
    // be zeros
@@ -256,10 +253,18 @@ module openxlr8
 
    // Set up pin 13 (LED) to be an output pin for LFSR heartbeat
    // Set up pin 2 to be an input pin for "long heartbeat" control
-   assign xbs_ddoe[0] = {{6{1'b0}}, {1{1'b1}}, {10{1'b0}}, {1{1'b1}}, {2{1'b0}}}; // enable pin 13 and pin 2
-   assign xbs_ddov[0] = {{6{1'b0}}, {1{1'b1}}, {10{1'b0}}, {1{1'b0}}, {2{1'b0}}}; // set pin 13 as an output and pin 2 as an input
-   assign xbs_pvoe[0] = {{6{1'b0}}, {1{1'b1}}, {10{1'b0}}, {1{1'b0}}, {2{1'b0}}}; // set pin 13 to always be controlled by pvov
-   assign xbs_pvov[0] = {{6{1'b0}}, {1{lfsr_heartbeat}}, {10{1'b0}}, {1{1'b0}}, {2{1'b0}}}; // set pin 13 to output the result of the heartbeat signal
+
+   assign xbs_ddoe[0][13] = 1'b1; // enable data direction for pin 13
+   assign xbs_ddoe[0][2]  = 1'b1; // enable data direction for pin 2
+
+   assign xbs_ddov[0][13] = 1'b1; // set pin 13 to be an output
+   assign xbs_ddov[0][2]  = 1'b0; // set pin 2 to be an input
+
+   assign xbs_pvoe[0][13] = ~xb_pinx[2]; // set pin 13 to be an output ONLY IF pin 2 is grounded
+   assign xbs_pvoe[0][2]  = 1'b0; // set pin 2 to never output the value of pvov
+
+   assign xbs_pvov[0][13] = lfsr_heartbeat; // set pin 13 to output the value of lfsr_heartbeat
+   assign xbs_pvov[0][2]  = 1'b0; // set pin 2 pvov to 0, this is ignored because pvoe for pin 2 is not enabled
 
    // End of XB instantiation
    //----------------------------------------------------------------------

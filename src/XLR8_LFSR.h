@@ -36,7 +36,11 @@ public:
   }
 
   void set_freerunning_mode(boolean freerunning) {
-    XLR8_LFSR_CTRL = freerunning;
+    XLR8_LFSR_CTRL = XLR8_LFSR_CTRL | freerunning;
+  }
+
+  void set_long_heartbeat(boolean long_heartbeat) {
+    XLR8_LFSR_CTRL = XLR8_LFSR_CTRL | (long_heartbeat << 1);
   }
 
 private:

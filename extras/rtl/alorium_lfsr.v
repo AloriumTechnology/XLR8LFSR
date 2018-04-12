@@ -32,7 +32,7 @@ module alorium_lfsr
    assign feedback = ~(lfsr_data[7] ^ lfsr_data[5] ^ 
                        lfsr_data[4] ^ lfsr_data[3]);
    
-   always @(posedge clk) begin // or negedge reset_n) begin
+   always @(posedge clk) begin
 
       if (!reset_n) begin
          heartbeat <= 0;
@@ -50,16 +50,15 @@ module alorium_lfsr
          hb_cnt <= hb_cnt + 1;
       end // else: !if(!reset_n)
 
-      if ((!long_hb) && (hb_cnt > 9999999)) begin
+      if ((long_hb) && (hb_cnt > 9999999)) begin
         hb_cnt <= 0;
         heartbeat <= ~heartbeat;
       end
-      else if ((long_hb) && (hb_cnt > 9)) begin
+      else if ((!long_hb) && (hb_cnt > 9)) begin
         hb_cnt <= 0;
         heartbeat <= ~heartbeat;
       end
 
-   end // always @ (posedge clk or negedge reset_n)
+   end // always @ (posedge clk)
 
-endmodule // alorium_lfsr
-
+endmodule
